@@ -36,7 +36,7 @@ class ClaimCollectivePage extends React.Component {
     error: null,
     loadingUserLogin: true,
     loadingRepos: false,
-    LoggedInUser: {},
+    LoggedInUser: undefined,
     repos: [],
   };
 
@@ -82,12 +82,15 @@ class ClaimCollectivePage extends React.Component {
 
   render() {
     const { data, slug, token } = this.props;
-    const { error, LoggedInUser, loadingUserLogin, loadingRepos, repos } = this.state;
-
     const {
-      Collective: { id, name, website } = {},
-      loading,
-    } = data;
+      error,
+      LoggedInUser,
+      loadingUserLogin,
+      loadingRepos,
+      repos,
+    } = this.state;
+
+    const { Collective: { id, name, website } = {}, loading } = data;
 
     if (error) {
       data.error = data.error || error;
@@ -170,10 +173,9 @@ class ClaimCollectivePage extends React.Component {
                         Why are we asking you to do this?
                       </P>
 
-                      <P
-                        fontSize="1.2rem"
-                      >
-                        We need to validate that you have owner rights to the repository linked to this pledged collective.
+                      <P fontSize="1.2rem">
+                        We need to validate that you have owner rights to the
+                        repository linked to this pledged collective.
                       </P>
 
                       <P
@@ -183,12 +185,11 @@ class ClaimCollectivePage extends React.Component {
                         mb={2}
                         mt={3}
                       >
-                        Want to onboard an organization instead of a single repository?
+                        Want to onboard an organization instead of a single
+                        repository?
                       </P>
 
-                      <P
-                        fontSize="1.2rem"
-                      >
+                      <P fontSize="1.2rem">
                         Make sure to Grant access in the GitHub permission page.
                       </P>
 
@@ -257,8 +258,9 @@ class ClaimCollectivePage extends React.Component {
                     >
                       Sorry, we were unable to succesfully validated your admin
                       status. Try again, or if you believe this is a mistake,
-                      please get in touch with the repository owners.
-                      Make sure you granted us access as an organization if that&apos;s what you are trying to onboard. 
+                      please get in touch with the repository owners. Make sure
+                      you granted us access as an organization if that&apos;s
+                      what you are trying to onboard.
                     </P>
                     <StyledLink
                       buttonStyle="standard"
